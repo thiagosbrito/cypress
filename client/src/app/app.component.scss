@@ -1,0 +1,20 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+
+p, span, label {
+  color: #f5f5f5;
+}
+
+label {
+  font-weight: 600;
+}
+
+
+.content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 16px 24px;
+}

@@ -1,0 +1,35 @@
+<mat-card class="search-wrapper">
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search for a football club:</mat-label>
+      <input type="text"
+             placeholder="Start typing to search for a club..."
+             aria-label="Number"
+             matInput
+             [formControl]="club"
+             [matAutocomplete]="auto"
+             data-cy="club-input">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" (click)="getClubDetails(option)" data-cy="option-button">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</mat-card>
+
+<mat-card class="example-full-width mt-20" *ngIf="selectedClub">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image" [style.background-image]="'url(' + selectedClub.symbol + ')'"></div>
+    <mat-card-title data-cy="club-name">{{selectedClub.name}}</mat-card-title>
+    <mat-card-subtitle data-cy="club-short-details">{{selectedClub.code}} - {{selectedClub.country}}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="stadium-image" [style.background-image]="'url(' + selectedClub.stadium.image + ')'"></div>
+  <mat-card-content class="'club-details">
+    <p class="club-name">Club: {{selectedClub.name}} - {{selectedClub.code}}</p>
+    <p class="club-country">Country: {{selectedClub.country}}</p>
+    <p class="club-stadium-name">Stadium: {{selectedClub.stadium.name}}</p>
+    <p class="club-stadium-capacity">Stadium capacity: {{selectedClub.stadium.capacity}}</p>
+    <p class="club-stadium-address">Stadium address: {{selectedClub.stadium.address}}</p>
+  </mat-card-content>
+</mat-card>
